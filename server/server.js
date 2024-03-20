@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 
 import brandsRoutes from "./routes/brands.js"
+import pythonRoutes from "./routes/python.js"
 
 
 /* Variables */
@@ -20,7 +21,8 @@ app.use(express.json())
 
 /* Routing */
 
-app.use("/api/brands", brandsRoutes)
+app.use("/api/brands",      brandsRoutes) // this route is using only node.js to get data and return result
+app.use("/api/py/brands",   pythonRoutes) // this route is using python to get and handle data 
 
 
 /* Run server */

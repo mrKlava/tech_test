@@ -7,12 +7,16 @@ import { BrandList, Result, Search } from "./components"
 
 function App() {
   const [brands, setBrands] = useState([])
+  const [pyBrands, setPyBrands] = useState([])
 
+  // gets all brands for node and python
   const getBrands = async () => {
     try {
       const resp = await httpRequest.get('/brands')
+      const pyResp = await httpRequest.get('/py/brands')
 
       setBrands(resp.data)
+      setPyBrands(pyResp.data)
     } catch (err) {
       console.log(err)
     }
@@ -26,9 +30,10 @@ function App() {
     <div className="App">
       <Search />
       <Result />
-      <BrandList list={brands} title="Brand list"/>
+      <BrandList list={brands} title="Brand list (Client => Node => Client)"/>
+      <BrandList list={pyBrands} title="Brand list (Client => Node => Python => Node => Client)"/>
     </div>
   );
 }
 
-export default App;
+export default App
