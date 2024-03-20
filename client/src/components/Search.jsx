@@ -2,6 +2,10 @@ import { useContext, useState } from "react"
 import { httpRequest } from "../axios"
 import { ResultContext } from "../resultContext"
 
+/* Interface for search
+  uses context to store and update results
+*/
+
 function Search() {
   const { setResult } = useContext(ResultContext)
   const [ input, setInput ] = useState({q: ""})
@@ -10,14 +14,16 @@ function Search() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    try {
-      const resp = await httpRequest.post("brands", input)
-
-      console.log(resp)
-      setResult(resp.data)
-    } catch (err) {
-      console.log(err)
+    
+    if (input.q.length) {
+      try {
+        const resp = await httpRequest.post("brands", input)
+  
+        console.log(resp)
+        setResult(resp.data)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
   

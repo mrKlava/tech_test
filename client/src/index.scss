@@ -11,3 +11,15 @@ h6 {
 li {
   margin-bottom: 1rem;
 }
+
+strong {
+  color: red;
+  font-weight: 700;
+  background: yellow;
+
+  &.head {
+    color: black;
+    font-weight: 700;
+    background: none;
+  }
+}
